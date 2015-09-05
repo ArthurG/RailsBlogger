@@ -3,3 +3,7 @@
 <%= link_to "Delete article", article_path(@article),  method: :delete, data: {confirm: "Really delete it?"} %>
 <%= link_to "Back to articles list", articles_path %>
 <%= link_to "Edit", edit_article_path(@article) %>
+<h3>Comments (<%= @article.comments.count.to_s %>)</h3>
+
+<%= render partial: "articles/comment", collection: @article.comments %>
+<%= render partial: "comments/form" %>
