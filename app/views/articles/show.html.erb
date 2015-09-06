@@ -9,6 +9,10 @@
 </p>
 <%= link_to "Back to articles list", articles_path %>
 <%= link_to "Edit", edit_article_path(@article) %>
+<% if @article.image.exists? %>
+	<br/>
+	<%= image_tag @article.image.url(:medium), class: "article-image" %>
+<% end %>
 <h3>Comments (<%= @article.comments.count.to_s %>)</h3>
 
 <%= render partial: "articles/comment", collection: @article.comments %>
