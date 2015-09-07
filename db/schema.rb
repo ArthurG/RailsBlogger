@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906023453) do
+ActiveRecord::Schema.define(version: 20150907023819) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -23,7 +23,19 @@ ActiveRecord::Schema.define(version: 20150906023453) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.integer  "author_id"
   end
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "username",         null: false
+    t.string   "email",            null: false
+    t.string   "crypted_password", null: false
+    t.string   "salt",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authors", ["email"], name: "index_authors_on_email", unique: true
 
   create_table "comments", force: :cascade do |t|
     t.string   "author_name"
